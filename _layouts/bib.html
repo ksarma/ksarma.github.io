@@ -84,12 +84,17 @@
           {%- if entry.year -%}
             {%- capture entryyear -%}{{ " " }}{{entry.year}}{%- endcapture -%}
           {%- endif -%}
-          {%- capture periodical -%}{{ entrytype }}{{ entrymonth }}{{ entryyear }}{%- endcapture -%}
+          {% if entry.award %}
+            {%- capture award -%} <b><em>{{ " " }}{{entry.award}}</em></b> {%- endcapture -%}
+          {%- endif %}
+
+          {%- capture periodical -%}{{ entrytype }}{{ entrymonth }}{{ entryyear }}{{ award }}{%- endcapture -%}
           <div class="periodical">
             {{ periodical | strip }}
           </div>
         {%- endif %}
         
+
           <!-- Links/Buttons -->
           <div class="links">
           {%- if entry.abstract %}
