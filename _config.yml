@@ -5,7 +5,7 @@
 title: blank # the website title (if blank, full name will be used instead)
 first_name: Karthik
 middle_name: V.
-last_name: Sarma
+last_name: Sarma PhD
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Medical Scientist/Technologist
 footer_text: >
@@ -203,7 +203,7 @@ jekyll-minifier:
 scholar:
 
   last_name: Sarma
-  first_name: [Karthik, V.]
+  first_name: [Karthik, V]
 
   style: apa
   locale: en
