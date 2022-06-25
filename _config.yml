@@ -203,7 +203,7 @@ jekyll-minifier:
 scholar:
 
   last_name: Sarma
-  first_name: [Karthik, Karthik*, Karthik V, Karthik V*]
+  first_name: [Karthik, Karthik*, Karthik V, Karthik V*, Karthik V., Karthik V.*]
 
   style: apa
   locale: en
