@@ -22,4 +22,4 @@ At SimX, I am Principal Investigator of the Virtual Advancement of Learning for 
 
 At UCLA, my research focuses on the development of novel artificial intelligence techniques for medical applications, with a focus on methods for extracting, transforming, and learning using data extracted from clinical systems. 
 
-I received my PhD in Bioengineering (Medical Imaging and Informatics) at UCLA, and my BS (Hons) in Computer Science from the California Institute of Technology. I currently live in Los Angeles, CA and am a native of Chicago, IL.
+I received my PhD in Bioengineering (Medical Imaging and Informatics) from UCLA, and my BS (Hons) in Computer Science from the California Institute of Technology. I currently live in Los Angeles, CA and am a native of Chicago, IL.
