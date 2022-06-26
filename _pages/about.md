@@ -18,7 +18,7 @@ social: true  # includes social icons at the bottom of the page
 ---
 I am co-founder and Chief Technology Officer at [SimX](https://simxvr.com), and a computational medical scientist at the UCLA [Computational Diagnostics](https://cdx.seas.ucla.edu/) group. Previously, I was a member of the Board of Trustees of the American Medical Association and the California Medical Association.
 
-At SimX, I lead the Virtual Advancement of Learning for Operational Readiness (VALOR) program, a collaboration between industry, academia, and the US Government to develop and evaluate the next generation of medical simulation training across the spectrum of care.
+At SimX, I am Principal Investigator of the Virtual Advancement of Learning for Operational Readiness (VALOR) program, a Federally funded collaboration between industry, academia, and the US Government to develop, evaluate and sustain the next generation of medical simulation training across the spectrum of care.
 
 At UCLA, my research focuses on the development of novel artificial intelligence techniques for medical applications, with a focus on methods for extracting, transforming, and learning using data extracted from clinical systems. 
 
