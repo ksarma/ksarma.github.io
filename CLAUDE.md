@@ -54,7 +54,12 @@ assets/          # Static assets (CSS, JS, images, PDFs)
 
 ### Adding Publications
 
-Edit `_bibliography/papers.bib` with BibTeX entries. The site automatically generates the publications page from this file. When editing the bibliography, also update the last edited comment at the top.
+Edit `_bibliography/papers.bib` with BibTeX entries. The site automatically generates the publications page from this file. 
+
+**Important**: When adding publications:
+1. It is OK for all but the last name to be initials for authors
+2. Update the last edited comment at the top of `papers.bib`
+3. Ensure the publication year is included in the `years` list in `_pages/publications.md` (line 6), otherwise the publication won't appear on the page
 
 #### Author Name Highlighting
 The system automatically underlines/italicizes your name in publications. This is configured in `_config.yml`:
