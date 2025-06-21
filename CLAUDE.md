@@ -68,12 +68,14 @@ scholar:
 - Matching authors are wrapped in `<em>` tags for emphasis
 
 #### Adding Links to Publications
-Use these BibTeX fields to add links and buttons:
+**Important**: The `doi` and `url` BibTeX fields are NOT used by this theme and won't generate any output.
+
+To add links, use these BibTeX fields which create buttons:
+- `website` - General purpose link (shows as "Link" button) - use this for DOI links
 - `pdf` - Link to PDF (external URL or local file in `/assets/pdf/`)
 - `arxiv` - ArXiv ID (e.g., `arxiv={2023.12345}`)
 - `html` - Link to HTML version
 - `code` - Link to code repository
-- `website` - Project website
 - `blog` - Blog post about the work
 - `poster` - Conference poster
 - `slides` - Presentation slides
