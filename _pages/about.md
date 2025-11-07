@@ -17,7 +17,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a computational health scientist at the [University of California, San Francisco](https://psych.ucsf.edu/), where I am part of the
+I am a physician and computational health scientist at the [University of California, San Francisco](https://psych.ucsf.edu/), where I am part of the
 [Psychiatry RRTP](https://psych.ucsf.edu/rtp/research). I founded the UCSF AI in Mental Health
 Research Group (AIMHealth). I am also co-founder and Chief Technology Officer at [SimX](https://simxvr.com). Previously,
 I was mentored by [Atul Butte](https://en.wikipedia.org/wiki/Atul_Butte) at UCSF and
