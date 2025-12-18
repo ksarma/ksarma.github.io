@@ -31,7 +31,10 @@ reasoning, and assist in the delivery of clinical care. I have been involved in 
 knowledge base encoded in latest-generation LLMs, evaluating approaches for guided LLM reasoning in 
 diagnosis, measuring the mental health impact and safety of LLM-based chatbots, developing new methods for using
 LLM-based agents to interact with the electronic health record, and designing new systems for constraining LLMs to act
-within acceptable clinical parameters across a wide variety of settings.
+within acceptable clinical parameters across a wide variety of settings. I am also studying how the use of consumer-facing 
+AI chatbots interactions with mental illness, with a particular interest in the phenomenon described in the media as 
+"AI-associated psychosis." In collaboration with colleagues at the [Stanford Brainstorm](https://www.stanfordbrainstorm.com/) group, I'm working to develop methods for
+measuring and simulating these interactions.
 
 At SimX, I lead technology strategy. Previously, I led the company's advanced development division, which focused on next-generation
 technology projects in artificial intelligence and extended reality. I also founded our internal modeling and simulation
