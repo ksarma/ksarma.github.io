@@ -18,13 +18,12 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a physician and computational health scientist at the [University of California, San Francisco](https://psych.ucsf.edu/), where I am affiliated with the
-[Psychiatry RRTP](https://psych.ucsf.edu/rtp/research) and the [Clinical Informatics Fellowship](https://clinicalinformaticsfellowship.ucsf.edu/). I founded the UCSF AI in Mental Health
-Research Group [(AIMHealth)](https://aimhealth.ucsf.edu/). I am also co-founder and Chief Technology Officer at [SimX](https://simxvr.com). Previously,
-I was mentored by [Atul Butte](https://en.wikipedia.org/wiki/Atul_Butte) at UCSF and
-by [Corey Arnold](https://www.coreyarnold.dev/) at UCLA. I am affiliated with the
-UCSF [Department of Psychiatry and Behavioral Sciences](https://psych.ucsf.edu) and
-the [Bakar Computational Health Sciences Institute](https://bakarinstitute.ucsf.edu/) at UCSF.
+I am a physician and computational health scientist at the [University of California, San Francisco](https://psych.ucsf.edu/), where I am 
+affiliated with the [Psychiatry RRTP](https://psych.ucsf.edu/rtp/research) and the [Clinical Informatics Fellowship](https://clinicalinformaticsfellowship.ucsf.edu/). 
+I founded the UCSF AI in Mental Health Research Group [(AIMHealth)](https://aimhealth.ucsf.edu/). I am also co-founder 
+and Chief Technology Officer at [SimX](https://simxvr.com). Previously, I was mentored by [Atul Butte](https://en.wikipedia.org/wiki/Atul_Butte) at UCSF and by [Corey Arnold](https://www.coreyarnold.dev/) 
+at UCLA. At UCSF, I work with the UCSF [Department of Psychiatry and Behavioral Sciences](https://psych.ucsf.edu), the [Bakar Computational Health Sciences Institute](https://bakarinstitute.ucsf.edu/), 
+and the [Division of Clinical Informatics and Digital Transformation](https://docit.ucsf.edu/).
 
 At UCSF, my research focuses on the development of novel artificial intelligence techniques for clinical
 applications, with a focus on using large language models to interpret patient and clinical text, perform clinical
