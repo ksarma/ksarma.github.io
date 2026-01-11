@@ -13,7 +13,8 @@ layout: default
 
         <article>
           <div class="row">
-            <div class="col-md-8">
+            <!-- Main content column -->
+            <div class="col-12 col-md-7 order-1">
               {% if page.profile -%}
               <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
                 {%- if page.profile.image %}
@@ -36,12 +37,13 @@ layout: default
               </div>
 
               {% if page.selected_papers -%}
-                <!-- Selected papers -->
-                {%- include selected_papers.html %}
+              <!-- Selected papers -->
+              {%- include selected_papers.html %}
               {%- endif %}
+
               {%- if page.social %}
-              <!-- Social -->
-              <div class="social">
+              <!-- Social - Desktop only -->
+              <div class="social d-none d-md-block">
                 <div class="contact-icons">
                 {% include social.html %}
                 </div>
@@ -54,12 +56,34 @@ layout: default
               {%- endif %}
             </div>
 
-            <div class="col-md-4">
+            <!-- Sidebar column -->
+            <div class="col-12 col-md-5 order-2">
               {% if page.news -%}
               <!-- News Sidebar -->
               {%- include news.html %}
               {%- endif %}
+
+              {% if page.talks -%}
+              <!-- Talks Sidebar -->
+              {%- include talks.html %}
+              {%- endif %}
             </div>
+
+            <!-- Social - Mobile only, appears after sidebar -->
+            {%- if page.social %}
+            <div class="col-12 order-3 d-md-none">
+              <div class="social">
+                <div class="contact-icons">
+                {% include social.html %}
+                </div>
+
+                <div class="contact-note">
+                  {{ site.contact_note }}
+                </div>
+
+              </div>
+            </div>
+            {%- endif %}
           </div>
         </article>
 

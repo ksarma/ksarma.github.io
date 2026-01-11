@@ -1,0 +1,22 @@
+
+          <div class="talks">
+            <h2>recent public access talks</h2>
+            {% if site.data.talks and site.data.talks.size > 0 -%}
+            <div class="talks-sidebar">
+              {% for item in site.data.talks %}
+                <div class="talk-item">
+                  <div class="talk-date">{{ item.date }}</div>
+                  <div class="talk-content">
+                    <a class="talk-title" href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+                    <div class="talk-event"><em>{{ item.event }}</em></div>
+                    {% if item.description -%}
+                    <div class="talk-description">{{ item.description }}</div>
+                    {%- endif %}
+                  </div>
+                </div>
+              {%- endfor %}
+            </div>
+          {%- else -%}
+            <p>No talks yet...</p>
+          {%- endif %}
+          </div>
