@@ -1,18 +1,17 @@
 
           <div class="news">
-            <h2>news</h2>
+            <h2>recent media</h2>
             {% if site.data.news and site.data.news.size > 0 -%}
-            <div class="table-responsive">
-              <table class="table table-sm table-borderless">
+            <div class="news-sidebar">
               {% for item in site.data.news %}
-                <tr>
-                  <th scope="row">{{ item.date }}</th>
-                  <td>
-                    <a class="news-title" href="{{ item.url }}" target="_blank">{{ item.title }}</a> &mdash; <em>{{ item.publication }}</em>
-                  </td>
-                </tr>
+                <div class="news-item">
+                  <div class="news-date">{{ item.date }}</div>
+                  <div class="news-content">
+                    <a class="news-title" href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+                    <div class="news-publication"><em>{{ item.publication }}</em></div>
+                  </div>
+                </div>
               {%- endfor %}
-              </table>
             </div>
           {%- else -%}
             <p>No news so far...</p>

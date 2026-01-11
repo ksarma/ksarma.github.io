@@ -582,3 +582,47 @@ html.transition *:after {
     }
   }
 }
+
+// News Sidebar
+.news {
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--global-theme-color);
+  }
+
+  .news-sidebar {
+    .news-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--global-divider-color);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .news-date {
+        font-size: 0.75rem;
+        color: var(--global-text-color-light);
+        margin-bottom: 0.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .news-content {
+        .news-title {
+          font-size: 0.9rem;
+          font-weight: 500;
+          line-height: 1.4;
+          display: block;
+          margin-bottom: 0.25rem;
+        }
+
+        .news-publication {
+          font-size: 0.85rem;
+          color: var(--global-text-color-light);
+        }
+      }
+    }
+  }
+}
