@@ -45,9 +45,9 @@ max_width: 1200px
 # Open Graph & Schema.org
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
+serve_schema_org: true # Include Schema.org in the HTML head
+og_image: https://ksarma.com/assets/img/prof_pic.jpg # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Social integration
@@ -56,15 +56,16 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 github_username: ksarma
 gitlab_username: # your GitLab user name
 twitter_username: ksarma
+bluesky_username: ksarma.com
 linkedin_username: ksarma
-scholar_userid: # your Google Scholar ID
+scholar_userid: Mx-kBf4AAAAJ
 orcid_id: 0000-0002-7442-9526
 medium_username: # your Medium username
 quora_username: # your Quora username
 publons_id: # your ID on Publons
 research_gate_profile: # your profile on ResearchGate
 blogger_url: # your blogger URL
-work_url: # work page URL
+work_url: https://aimhealth.ucsf.edu
 keybase_username: # your keybase user name
 wikidata_id: # your wikidata id
 dblp_url: # your DBLP profile url
