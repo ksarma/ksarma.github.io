@@ -2,7 +2,7 @@
 layout: page
 permalink: /work-with-me/
 title: work with me
-description: 
+meta_description: "Opportunities for research collaboration, academic mentorship, industry partnerships, speaking engagements, and consulting in AI healthcare technology."
 nav: true
 nav_order: 3
 ---

@@ -2,6 +2,7 @@
 layout: about
 title: about
 permalink: /
+meta_description: "Physician-scientist at UCSF researching AI applications in mental health and psychiatry. CTO at SimX and VR entrepreneur, AMA Delegate, Fellow of AMIA (FAMIA). MD PhD UCLA, BS Caltech."
 #subtitle: Medical Scientist/Technologist
 
 profile:
