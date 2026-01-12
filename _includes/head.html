@@ -5,6 +5,9 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {% if site.enable_google_analytics -%}
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    {%- endif %}
 
     <!-- Bootstrap & MDB -->
     <!-- Bootstrap: Critical for layout, load synchronously -->
