@@ -4,7 +4,7 @@
 
   <picture>
     {% for i in site.imagemagick.widths -%}
-      <source media="(max-width: {{ i }}px)" srcset="{{ path | relative_url }}-{{ i }}.webp" />
+      <source media="(max-width: {{ i }}px)" srcset="{{ path | relative_url }}-{{ i }}.webp"{% if include.fetchpriority %} fetchpriority="{{ include.fetchpriority }}"{% endif %} />
     {% endfor -%}
 
     <!-- Fallback to the original file -->
