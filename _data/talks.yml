@@ -2,12 +2,15 @@
 # Add new entries at the top to keep most recent first
 # Fields: title, event, date, url, description (optional)
 
+- title: "Use of Generative AI in Mental Health: Fireside Chat"
+  event: "TIPS 2025"
+  date: "December 2025"
+  url: https://www.youtube.com/watch?v=lHyPpnASjRQ
 
 - title: "Accelerating the Science of LLMs for Behavioral Health: The UCSF AI in Mental Health Research Group"
   event: "AI4MH 2025"
   date: "October 2025"
   url: https://mediaspace.stanford.edu/media/AI4MH+Seminar+Series+Oct+29,+2025:+Accelerating+the+Science+of+LLMs+for+Behavioral+Health:+The+UCSF+AI+in+Mental+Health+Research+Group/1_5pctdiho
-  description: ""
 
 - title: "The dangers of teen addiction to interactive AI"
   event: "NTV News"
@@ -18,6 +21,5 @@
   event: "TIPS 2024"
   date: "December 2024"
   url: https://www.youtube.com/watch?v=oPMnaosfkis"
-  description: ""
 
 # Add more talks here following the same format
