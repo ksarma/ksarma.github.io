@@ -2,6 +2,11 @@
 # Add new entries at the top to keep most recent first
 # Fields: title, event, date, url, description (optional)
 
+- title: "AI Overdiagnoses Mental Health Conditions"
+  event: "The Last Show with David Cooper"
+  date: "February 2026"
+  url: https://podcasts.apple.com/ca/podcast/ai-overdiagnoses-mental-health-conditions/id1168275879?i=1000748211961
+
 - title: "Use of Generative AI in Mental Health: Fireside Chat"
   event: "TIPS 2025"
   date: "December 2025"
