@@ -2,6 +2,11 @@
 # Add new entries at the top to keep most recent first
 # Fields: title, event, date, url, description (optional)
 
+- title: "SB 903 Testimony"
+  event: "CA Senate Business, Professions, and Economic Development Committee"
+  date: "April 2026"
+  url: https://customer-2por81wl0ljhzhfa.cloudflarestream.com/aac71dc9d49f6e965cd8ef72a34fc631/watch
+
 - title: "AI Overdiagnoses Mental Health Conditions"
   event: "The Last Show with David Cooper"
   date: "February 2026"
