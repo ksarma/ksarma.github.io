@@ -35,7 +35,7 @@
     {% elsif site.icon != blank %}
     <link rel="shortcut icon" href="{{ site.icon | prepend: '/assets/img/' | relative_url}}"/>
     {% endif %}
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
     {%- if site.enable_notes %}
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }} | Notes" href="{{ '/feed.xml' | relative_url }}">
