@@ -50,13 +50,12 @@ let transTheme = () => {
 
 
 let initTheme = (theme) => {
+  // Default to dark when the visitor has no stored preference (regardless of
+  // OS setting). A user's explicit toggle is still remembered in localStorage.
   if (theme == null || theme == 'null') {
-    const userPref = window.matchMedia;
-    if (userPref && userPref('(prefers-color-scheme: dark)').matches) {
-        theme = 'dark';
-    }
+    theme = 'dark';
   }
-  
+
   setTheme(theme);
 }
 
