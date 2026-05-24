@@ -12,14 +12,32 @@ layout: kvs
   "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}",
   "givenName": "{{ site.first_name }}",
   "familyName": "{{ site.last_name }}",
+  "additionalName": "{{ site.middle_name }}",
+  "honorificPrefix": "Dr.",
   "honorificSuffix": "{{ site.credentials }}",
-  "jobTitle": "Physician-scientist",
+  "description": {{ page.tagline | default: site.description | strip_newlines | strip | jsonify }},
+  "jobTitle": [
+    {%- for t in site.data.person.job_titles -%}{{ t | jsonify }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}
+  ],
   "url": "{{ '/' | absolute_url }}",
   "image": "{{ site.og_image }}",
   "affiliation": [
     {%- for a in site.data.roles -%}
     { "@type": "Organization", "name": {{ a.name | jsonify }}{% if a.url %}, "url": {{ a.url | jsonify }}{% endif %} }{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
+  ],
+  "worksFor": [
+    {%- for w in site.data.person.works_for -%}
+    { "@type": "Organization", "name": {{ w.name | jsonify }}{% if w.url %}, "url": {{ w.url | jsonify }}{% endif %} }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "alumniOf": [
+    {%- for s in site.data.person.alumni_of -%}
+    { "@type": "CollegeOrUniversity", "name": {{ s.name | jsonify }}{% if s.url %}, "url": {{ s.url | jsonify }}{% endif %} }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "knowsAbout": [
+    {%- for k in site.data.person.knows_about -%}{{ k | jsonify }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}
   ],
   "sameAs": [
     "https://orcid.org/{{ site.orcid_id }}",
