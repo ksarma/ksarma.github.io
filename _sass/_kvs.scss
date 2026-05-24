@@ -124,7 +124,7 @@ html, body {
   margin: 0;
   letter-spacing: var(--tracking-h);
 }
-.kvs h1.display { font-size: var(--fs-display); line-height: var(--lh-tight); letter-spacing: var(--tracking-display); font-weight: 500; }
+.kvs .display { font-size: var(--fs-display); line-height: var(--lh-tight); letter-spacing: var(--tracking-display); font-weight: 500; }
 .kvs h1 { font-size: var(--fs-h1); line-height: var(--lh-snug); }
 .kvs h2 { font-size: var(--fs-h2); line-height: var(--lh-snug); }
 .kvs h3 { font-size: var(--fs-h3); line-height: 1.35; }
@@ -396,21 +396,34 @@ html, body {
 
 /* =========================================================
    about
+   Header layout (May 24): photo top-left + Current/Elsewhere
+   top-right, prose flows full-width underneath.
    ========================================================= */
 .kvs-pagelabel { padding: 48px 0 0; }
-.kvs-about { display: grid; grid-template-columns: 1fr 320px; gap: 72px; align-items: start; padding-top: 56px; }
-.kvs-about main { max-width: 640px; }
+.kvs-about { padding-top: 56px; }
+.kvs-about-header {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--rule);
+}
+.kvs-about main { max-width: 720px; }
 .kvs-about main h2 { margin-top: 40px; margin-bottom: 16px; font-size: 24px; }
-.kvs-about main h2:first-of-type { margin-top: 48px; }
+.kvs-about main h2:first-of-type { margin-top: 0; }
 .kvs-about .rail-photo {
   width: 100%;
   aspect-ratio: 2 / 3;
   background: var(--bg-tint);
   background-size: cover;
   background-position: center top;
-  margin-bottom: 28px;
   filter: saturate(0.92);
 }
+.kvs-about-meta { display: flex; flex-direction: column; }
+.kvs-about-meta .eyebrow { margin-bottom: 12px; }
+.kvs-about-meta ul + .eyebrow { margin-top: 32px; }
 .kvs-roles { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--rule); }
 .kvs-roles li { padding: 14px 0; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: 4px; }
 .kvs-roles .org { font-family: var(--sans-caps); font-size: 13px; letter-spacing: 0.04em; color: var(--ink); font-weight: 500; }
@@ -608,27 +621,252 @@ html, body {
 
 /* =========================================================
    responsive
+   ---------------------------------------------------------
+   Breakpoints:
+     - ≥ 1081px: desktop (full two-column grids, generous gutters)
+     - 821–1080px: tablet (desktop grid, tightened gaps & rails)
+     - ≤ 820px: mobile (single column, centered hero)
+     - ≤ 400px: small phone (relax dense rows)
    ========================================================= */
-@media (max-width: 820px) {
+
+/* tablet sweet spot — desktop layout, but the rails and gaps were
+   designed for ≥1080px containers; tighten them so the prose column
+   doesn't get squeezed at iPad-portrait through small-laptop widths.
+   Breakpoint lower bound lowered from 821 → 721 in May 2026 so iPad
+   portrait (768) gets the same desktop layout as iPad Pro 11″ portrait
+   (834), instead of falling off the cliff into single-column mobile. */
+@media (min-width: 721px) and (max-width: 1080px) {
+  .kvs-container        { padding: 0 32px; }
+  .kvs-hero             { grid-template-columns: 1fr 220px; gap: 36px; }
+  .kvs-about            { padding-top: 40px; }
+  .kvs-about-header     { grid-template-columns: 200px 1fr; gap: 36px; margin-bottom: 44px; padding-bottom: 44px; }
+  .kvs-pubgrid          { grid-template-columns: 88px 1fr; gap: 32px; }
+  .kvs-wwm              { grid-template-columns: 180px 1fr; gap: 40px; }
+  .kvs-paper-body       { grid-template-columns: 1fr 220px; gap: 40px; }
+  .kvs-recent           { gap: 40px; }
+  .kvs-recent.cols-3    { gap: 32px; }
+  .kvs-hero .name       { font-size: 52px; }
+  .kvs-pub-head .display { font-size: 44px; }
+  .kvs-notes-head .display { font-size: 48px; }
+
+  /* Recent-strip column headers: at tighter tablet widths the
+     200-240px column can't hold the 26px H2 + see-all link on
+     one line, so the Notes column (the only one with see-all)
+     wraps to 2 lines while Press/Recordings stay 1 line —
+     uneven by 14–18px. Shrink the H2 to a column-label size
+     so the see-all fits inline and all 3 headers match. */
+  .kvs-recent .section-header        { gap: 12px; padding-bottom: 10px; }
+  .kvs-recent .section-header h2     { font-size: 19px; line-height: 1.25; }
+  .kvs-recent .section-header .see-all { font-size: 12px; }
+}
+
+/* About — at 820+ revert to the original prose-with-right-rail layout.
+   The new header-on-top pattern only kicks in below 820 (so iPad-portrait
+   widths and below get the magazine masthead look) while iPad-Pro-portrait
+   and wider keep the established sidebar layout the user prefers.
+   Threshold is 820 (not 834) to leave ~15px room for vertical-scrollbar
+   width — a desktop browser sized to 834 wide has ~819 layout viewport,
+   and would otherwise show the wrong layout until further widened. */
+@media (min-width: 820px) {
+  .kvs-about {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    grid-template-areas: "main meta";
+    gap: 72px;
+    align-items: start;
+    padding-top: 56px;
+  }
+  .kvs-about main { grid-area: main; max-width: 640px; }
+  .kvs-about main h2:first-of-type { margin-top: 48px; }
+  .kvs-about-header {
+    grid-area: meta;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .kvs-about .rail-photo { margin-bottom: 28px; }
+}
+
+/* Tablet width (834-1080): same sidebar layout, but tighten the rail
+   so the prose column isn't starved when the container is only ~770-960. */
+@media (min-width: 820px) and (max-width: 1080px) {
+  .kvs-about {
+    grid-template-columns: 1fr 260px;
+    gap: 48px;
+    padding-top: 48px;
+  }
+}
+
+@media (max-width: 720px) {
   .kvs-container { padding: 0 24px; }
-  .kvs-hero { grid-template-columns: 1fr; gap: 32px; }
-  .kvs-hero-photo { max-width: 240px; order: -1; }
-  .kvs-hero .name { font-size: 44px; }
+
+  /* ----- HERO: center-align when the photo stacks on top ----- */
+  .kvs-hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    justify-items: center;
+    text-align: center;
+    padding: 48px 0 8px;
+  }
+  .kvs-hero > div:not(.kvs-hero-photo) {
+    max-width: 480px;
+    width: 100%;
+  }
+  .kvs-hero-photo {
+    max-width: 200px;
+    width: 100%;
+    order: -1;
+  }
+  .kvs-hero .name {
+    font-size: 40px;
+    /* keep the name on one line if at all possible; the user prefers a
+       wrapped employer over a wrapped name */
+    text-wrap: balance;
+  }
+  .kvs-hero .credentials-line { font-size: 18px; margin-bottom: 24px; }
+  /* tagline: block stays centered for breathing room, but the prose
+     itself reads left-justified — centered long-form text feels off */
+  .kvs-hero .tagline {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  /* role-line: stack role above employer so neither needs to truncate.
+     Previously the role wrapped to 2 lines while the employer stayed
+     glued to the right edge, which felt lopsided. Text inside is
+     left-aligned — the block sits centered, but reading multi-word
+     role titles centered each-line was uneven. */
+  .kvs-hero-roles { max-width: 360px; margin-left: auto; margin-right: auto; text-align: left; }
+  .kvs-hero-roles .role-line {
+    grid-template-columns: 1fr;
+    gap: 2px;
+    padding: 12px 0;
+    text-align: left;
+  }
+  .kvs-hero-roles .at {
+    text-align: left;
+    font-size: 12px;
+    color: var(--ink-soft);
+    white-space: normal;
+  }
+
+  .kvs-hero-notes { text-align: left; margin-left: auto; margin-right: auto; }
+
+  /* ----- recent strip ----- */
   .kvs-recent, .kvs-recent.cols-3 { grid-template-columns: 1fr; gap: 36px; }
-  .kvs-about { grid-template-columns: 1fr; gap: 40px; }
-  .kvs-about aside { max-width: 320px; }
+
+  /* ----- about ----- */
+  .kvs-about { padding-top: 32px; }
+  .kvs-about-header {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 36px;
+    padding-bottom: 32px;
+  }
+  .kvs-about .rail-photo { max-width: 200px; margin-left: auto; margin-right: auto; }
+  .kvs-about-meta { max-width: 360px; margin-left: auto; margin-right: auto; width: 100%; }
+
+  /* ----- publications ----- */
+  .kvs-pub-head { padding: 48px 0 24px; }
+  .kvs-pub-head .display { font-size: 36px; margin-bottom: 16px; } /* was 52, no override */
   .kvs-pubgrid { grid-template-columns: 1fr; gap: 24px; }
   .kvs-pubgrid .yearrail { display: none; }
+
+  /* ----- notes ----- */
   .kvs-notes-head { grid-template-columns: 1fr; }
   .kvs-notes-head .display { font-size: 40px; }
   .kvs-note-featured { grid-template-columns: 1fr; gap: 16px; }
-  .kvs-archive { grid-template-columns: 1fr; gap: 24px; }
-  .kvs-archive aside { position: static; display: flex; gap: 48px; flex-wrap: wrap; }
+
+  /* archive: filter UI redesigned as inline pill rows instead of two
+     columns of inline lists, which looked cramped at narrow widths */
+  .kvs-archive { grid-template-columns: 1fr; gap: 28px; }
+  .kvs-archive aside {
+    position: static;
+    display: block;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .kvs-archive aside .years,
+  .kvs-archive aside .tags {
+    margin-bottom: 14px;
+  }
+  .kvs-archive aside .eyebrow {
+    display: block;
+    margin-bottom: 8px;
+  }
+  .kvs-archive aside ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    line-height: 1.4;
+  }
+  .kvs-archive aside li a {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--bg-tint);
+    border-radius: 2px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .kvs-archive aside li a:hover { color: var(--accent); background: var(--accent-tint); }
+
   .kvs-note-row { grid-template-columns: 1fr; gap: 6px; }
   .kvs-note-row .readtime { display: none; }
+
+  /* ----- detail pages ----- */
   .kvs-article-head h1 { font-size: 36px; }
   .kvs-paper-body { grid-template-columns: 1fr; gap: 36px; }
   .kvs-paper-head h1 { font-size: 32px; }
   .kvs-wwm { grid-template-columns: 1fr; gap: 32px; }
   .kvs-wwm .toc { position: static; }
+}
+
+/* About-header gets the side-by-side layout earlier than the rest of
+   the page (phone-landscape territory: 700-720px). The rest of the
+   mobile-band rules above already moved photo+meta to stacked at
+   ≤720; this carve-out restores side-by-side for 700-720 so iPhone
+   landscape and similar widths get the editorial header pattern. */
+@media (min-width: 700px) and (max-width: 720px) {
+  .kvs-about-header {
+    grid-template-columns: 180px 1fr;
+    gap: 28px;
+  }
+  .kvs-about .rail-photo {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .kvs-about-meta {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* small phone — relax dense rows that were still 3-column at 360px */
+@media (max-width: 400px) {
+  .kvs-container { padding: 0 18px; }
+  .kvs-hero .name { font-size: 36px; }
+
+  /* bib entries: drop the right-side action column under the body */
+  .kvs-bibentry {
+    grid-template-columns: 44px 1fr;
+    gap: 14px;
+  }
+  .kvs-bibentry .links {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
+
+  /* publication & media rows: drop the year/date column under the title */
+  .kvs-pubrow,
+  .kvs-row-media,
+  .kvs-hero-note {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .kvs-pubrow .year { font-size: 12px; color: var(--ink-faint); }
 }
