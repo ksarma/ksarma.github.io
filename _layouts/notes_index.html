@@ -1,0 +1,141 @@
+---
+layout: kvs
+---
+{%- assign notes = site.notes | sort: 'date' | reverse -%}
+{%- assign featured = notes | first -%}
+
+{%- comment -%} build unique year list with counts {%- endcomment -%}
+{%- assign years_raw = "" -%}
+{%- for n in notes -%}{%- assign y = n.date | date: '%Y' -%}{%- assign years_raw = years_raw | append: y | append: "," -%}{%- endfor -%}
+{%- assign year_list = years_raw | split: "," | uniq -%}
+
+{%- comment -%} build unique tag list {%- endcomment -%}
+{%- assign tags_raw = "" -%}
+{%- for n in notes -%}{%- for t in n.tags -%}{%- assign tags_raw = tags_raw | append: t | append: "||" -%}{%- endfor -%}{%- endfor -%}
+{%- assign tag_list = tags_raw | split: "||" | uniq | sort -%}
+
+<header class="kvs-notes-head">
+  <div>
+    <div class="eyebrow" style="margin-bottom: 16px;">Notes</div>
+    <h1 class="display">{{ page.heading | default: "Short notes" }}</h1>
+    <p class="lead">{{ page.intro }}</p>
+  </div>
+</header>
+
+{%- if featured -%}
+{%- assign fwords = featured.content | number_of_words -%}
+{%- if featured.read_min -%}{%- assign frt = featured.read_min -%}{%- else -%}{%- assign frt = fwords | plus: 199 | divided_by: 200 -%}{%- endif -%}
+<article class="kvs-note-featured" id="note-featured">
+  <div class="meta-col">
+    <div class="eyebrow">Latest</div>
+    <div class="mono" style="font-size: 12px;">{{ featured.date | date: '%-d %b %Y' }}</div>
+    <div class="meta readtime">{{ frt }} min read</div>
+  </div>
+  <div>
+    <h2><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
+    <p class="lead">{{ featured.description | default: featured.lead }}</p>
+    <div class="actions">
+      <a class="readlink" href="{{ featured.url | relative_url }}">Read the note &rarr;</a>
+      {%- if featured.tags and featured.tags.size > 0 -%}
+      <span style="color: var(--ink-faint);">&middot;</span>
+      <div class="tags">{%- for t in featured.tags -%}<a class="tag" href="#tag-{{ t | slugify }}">{{ t }}</a>{%- endfor -%}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</article>
+{%- endif -%}
+
+<section class="kvs-archive">
+  <aside>
+    <div class="years">
+      <div class="eyebrow" style="margin-bottom: 14px;">Archive</div>
+      <ul>
+        {%- for y in year_list -%}
+        {%- assign c = 0 -%}
+        {%- for n in notes -%}{%- assign ny = n.date | date: '%Y' -%}{%- if ny == y -%}{%- assign c = c | plus: 1 -%}{%- endif -%}{%- endfor -%}
+        <li><a href="#y-{{ y }}">{{ y }}</a> <span style="color: var(--ink-faint);">&middot; {{ c }}</span></li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    {%- if tag_list.size > 0 -%}
+    <div class="tags" style="margin-top: 32px;">
+      <div class="eyebrow" style="margin-bottom: 14px;">By tag</div>
+      <ul>
+        {%- for t in tag_list -%}<li><a class="tag-filter" data-tag="{{ t | slugify }}" href="#tag-{{ t | slugify }}">{{ t }}</a></li>{%- endfor -%}
+      </ul>
+    </div>
+    {%- endif -%}
+  </aside>
+
+  <main>
+    <div class="eyebrow archive-label" id="archive-label">Earlier notes</div>
+    <ol style="list-style: none; padding: 0; margin: 0;">
+      {%- assign prev_year = "" -%}
+      {%- for n in notes -%}
+      {%- assign nwords = n.content | number_of_words -%}
+      {%- if n.read_min -%}{%- assign nrt = n.read_min -%}{%- else -%}{%- assign nrt = nwords | plus: 199 | divided_by: 200 -%}{%- endif -%}
+      {%- assign nyear = n.date | date: '%Y' -%}
+      {%- capture tslugs -%}{%- for t in n.tags -%}{{ t | slugify }} {% endfor -%}{%- endcapture -%}
+      <li class="kvs-note-row{% if forloop.first %} is-featured{% endif %}" data-tags=" {{ tslugs }}"{% if forloop.first %} data-featured{% endif %}{% if nyear != prev_year %} id="y-{{ nyear }}"{% endif %}>
+        {%- assign prev_year = nyear -%}
+        <div class="mono date">{{ n.date | date: '%-d %b %Y' }}</div>
+        <div>
+          <h3><a href="{{ n.url | relative_url }}">{{ n.title }}</a></h3>
+          <p class="summary">{{ n.description | default: n.lead }}</p>
+          {%- if n.tags and n.tags.size > 0 -%}
+          <div class="tags">{%- for t in n.tags -%}<a class="tag tag-filter" data-tag="{{ t | slugify }}" href="#tag-{{ t | slugify }}">{{ t }}</a>{%- endfor -%}</div>
+          {%- endif -%}
+        </div>
+        <div class="readtime">{{ nrt }} min</div>
+      </li>
+      {%- endfor -%}
+      <li class="kvs-archive-empty" id="archive-empty" style="display: none; padding: 28px 0; color: var(--ink-faint); font-family: var(--sans); font-size: 13px;"><em>No notes with that tag yet.</em></li>
+    </ol>
+  </main>
+</section>
+
+<script>
+  (function () {
+    var featured = document.getElementById('note-featured');
+    var label = document.getElementById('archive-label');
+    var empty = document.getElementById('archive-empty');
+    var rows = Array.prototype.slice.call(document.querySelectorAll('.kvs-note-row'));
+    if (!label) return;
+
+    function currentTag() {
+      return location.hash.indexOf('#tag-') === 0 ? decodeURIComponent(location.hash.slice(5)) : '';
+    }
+
+    function apply(tag) {
+      var shown = 0;
+      if (!tag) {
+        if (featured) featured.style.display = '';
+        rows.forEach(function (r) { r.style.display = r.hasAttribute('data-featured') ? 'none' : ''; });
+        label.textContent = 'Earlier notes';
+        if (empty) empty.style.display = 'none';
+      } else {
+        if (featured) featured.style.display = 'none';
+        rows.forEach(function (r) {
+          var has = (r.getAttribute('data-tags') || '').indexOf(' ' + tag + ' ') >= 0;
+          r.style.display = has ? '' : 'none';
+          if (has) shown++;
+        });
+        label.innerHTML = 'Tagged &ldquo;' + tag.replace(/-/g, ' ') + '&rdquo;  &middot;  <a href="#" id="clear-tag" class="see-all">all notes</a>';
+        if (empty) empty.style.display = shown === 0 ? '' : 'none';
+      }
+      document.querySelectorAll('.tag-filter').forEach(function (a) {
+        a.classList.toggle('active', a.getAttribute('data-tag') === tag);
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.id === 'clear-tag') {
+        e.preventDefault();
+        history.pushState('', document.title, location.pathname + location.search);
+        apply('');
+      }
+    });
+    window.addEventListener('hashchange', function () { apply(currentTag()); });
+    apply(currentTag());
+  })();
+</script>

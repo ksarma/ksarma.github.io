@@ -1,0 +1,126 @@
+---
+layout: kvs
+---
+{%- assign recent_notes = site.notes | sort: 'date' | reverse -%}
+
+{%- comment -%} ============ Person JSON-LD (knowledge-panel signal) ============ {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ '/about/' | absolute_url }}#person",
+  "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}",
+  "givenName": "{{ site.first_name }}",
+  "familyName": "{{ site.last_name }}",
+  "honorificSuffix": "{{ site.credentials }}",
+  "jobTitle": "Physician-scientist",
+  "url": "{{ '/' | absolute_url }}",
+  "image": "{{ site.og_image }}",
+  "affiliation": [
+    {%- for a in site.data.roles -%}
+    { "@type": "Organization", "name": {{ a.name | jsonify }}{% if a.url %}, "url": {{ a.url | jsonify }}{% endif %} }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "sameAs": [
+    "https://orcid.org/{{ site.orcid_id }}",
+    "https://scholar.google.com/citations?user={{ site.scholar_userid }}",
+    "https://github.com/{{ site.github_username }}",
+    "https://www.linkedin.com/in/{{ site.linkedin_username }}",
+    "https://bsky.app/profile/{{ site.bluesky_username }}"
+  ]
+}
+</script>
+
+{%- comment -%} ===================== hero ===================== {%- endcomment -%}
+<section class="kvs-hero">
+  <div>
+    <h1 class="name">{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}</h1>
+    <div class="credentials-line">{{ site.credentials | downcase | replace: ' ', ' · ' }}</div>
+    <p class="tagline">{{ page.tagline | default: site.description }}</p>
+    <a class="biolink" href="{{ '/about/' | relative_url }}">full bio &rarr;</a>
+
+    {%- if site.enable_notes -%}
+    <div class="kvs-hero-notes">
+      <header class="head">
+        <div class="eyebrow">Recent notes</div>
+        <a class="see-all" href="{{ '/notes/' | relative_url }}">all notes &rarr;</a>
+      </header>
+      {%- for n in recent_notes limit: 3 -%}
+      <article class="kvs-hero-note">
+        <div class="mono date">{{ n.date | date: '%d %b %Y' }}</div>
+        <a href="{{ n.url | relative_url }}">{{ n.title }}</a>
+      </article>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+
+  <div class="kvs-hero-photo" style="background-image: url('{{ '/assets/img/prof_pic.jpg' | relative_url }}');"></div>
+</section>
+
+<hr style="margin: 8px 0 48px;">
+
+{%- comment -%} ============ Press + Recordings rails ============ {%- endcomment -%}
+<section class="kvs-recent">
+  <div class="recent-col">
+    <header class="section-header">
+      <div class="titles"><div class="eyebrow">Recent</div><h2>Press</h2></div>
+    </header>
+    <div class="recent-list">
+      {%- for item in site.data.news limit: 7 -%}
+      <article class="kvs-row-media">
+        <div class="mono date">{{ item.date | date: '%d %b %Y' }}</div>
+        <div>
+          <a class="title" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
+          <div class="sub">{{ item.publication }}</div>
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="recent-col">
+    <header class="section-header">
+      <div class="titles"><div class="eyebrow">Recent</div><h2>Recordings</h2></div>
+    </header>
+    <div class="recent-list">
+      {%- for talk in site.data.talks limit: 6 -%}
+      <article class="kvs-row-media">
+        <div class="kind">
+          {%- if talk.kind == 'audio' -%}
+          <svg width="11" height="11" viewBox="0 0 12 12" aria-label="audio"><rect x="1" y="4.5" width="1.5" height="3" fill="currentColor"/><rect x="4" y="2" width="1.5" height="8" fill="currentColor"/><rect x="7" y="3.5" width="1.5" height="5" fill="currentColor"/><rect x="10" y="4.5" width="1.5" height="3" fill="currentColor"/></svg>
+          {%- else -%}
+          <svg width="11" height="11" viewBox="0 0 12 12" aria-label="video"><polygon points="2.5,1.5 10.5,6 2.5,10.5" fill="currentColor"/></svg>
+          {%- endif -%}
+          <span class="mono">{{ talk.date | date: '%b %Y' }}</span>
+        </div>
+        <div>
+          <a class="title" href="{{ talk.url }}" target="_blank" rel="noopener">{{ talk.title }}</a>
+          <div class="sub">{{ talk.event }}</div>
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<hr style="margin: 64px 0 48px;">
+
+{%- comment -%} ============ Recent publications (selected) ============ {%- endcomment -%}
+<section>
+  <header class="section-header">
+    <div class="titles"><div class="eyebrow">Recent</div><h2>Publications</h2></div>
+    <a class="see-all" href="{{ '/publications/' | relative_url }}">all publications &rarr;</a>
+  </header>
+  <div class="kvs-home-pubs">
+    {% bibliography -f papers -q @*[selected=true]* %}
+  </div>
+</section>
+
+{%- comment -%} ============ quiet consulting line ============ {%- endcomment -%}
+<section class="kvs-consulting">
+  <p>
+    I maintain a limited advisory practice for companies and counsel working at the intersection of artificial intelligence, clinical care, and behavioral health.
+    <a href="{{ '/work-with-me/' | relative_url }}">Work with me &rarr;</a>
+  </p>
+</section>

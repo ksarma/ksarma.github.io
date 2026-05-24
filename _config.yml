@@ -2,12 +2,15 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
+title: Karthik V. Sarma # site title; also used as the RSS feed title
 first_name: Karthik
 middle_name: V.
-last_name: Sarma MD PhD FAMIA
+last_name: Sarma
+credentials: MD PhD FAMIA # post-nominal letters, shown beside the name in the design
+email_display: "ksarma (at) ksarma.com" # obfuscated advisory contact (nav/footer/work-with-me)
+email_ucsf_display: "karthik.sarma (at) ucsf.edu" # obfuscated UCSF/academic contact
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Psychiatrist/Technologist
+  Physician-scientist, technology executive, and policy advisor working at the intersection of artificial intelligence, mental health, and the clinic.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
@@ -107,17 +110,19 @@ panelbear_analytics:  # panelbear analytics site ID (format: XXXXXXXXX)
 # Collections
 # -----------------------------------------------------------------------------
 
-#collections:
-#  news:
-#    defaults:
-#      layout: post
-#    output: true
-#    permalink: /news/:path/
-#  projects:
-#    output: true
-#    permalink: /projects/:path/
-#
-#news_limit: 5
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+
+# -----------------------------------------------------------------------------
+# RSS Feed (jekyll-feed) — primary /feed.xml carries the Notes collection
+# -----------------------------------------------------------------------------
+feed:
+  path: all.xml # default posts feed lives here (rarely linked)
+  collections:
+    notes:
+      path: feed.xml
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -171,6 +176,11 @@ defaults:
       path: "assets/**/*.*"
     values:
       sitemap: false
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: note
 
 # -----------------------------------------------------------------------------
 # Jekyll Minifier
@@ -221,7 +231,9 @@ scholar:
 
   details_dir: bibliography
   details_layout: bibtex.html
-  details_link: Details
+  details_link: # empty: per-paper detail pages are still generated (driven by
+                # details_layout), but jekyll-scholar's auto "Details" link is
+                # suppressed — we link the paper title to the detail page instead.
 
   query: "@*"
 
@@ -260,6 +272,8 @@ imagemagick:
 # Optional Features
 # -----------------------------------------------------------------------------
 
+enable_notes:               false # surfaces the Notes section (nav, homepage band, RSS link). Turn on once notes are written.
+                                   # band, RSS link). Turn on once notes are written.
 enable_google_analytics:    true  # enables google analytics
 enable_panelbear_analytics: false  # enables panelbear analytics
 enable_google_verification: false  # enables google site verification
