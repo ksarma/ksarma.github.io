@@ -290,9 +290,21 @@ html, body {
   font-size: 22px;
   letter-spacing: 0.06em;
   color: var(--ink-soft);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
-.kvs-hero .tagline { font-size: 23px; line-height: 1.38; font-style: italic; color: var(--ink); max-width: 620px; margin-bottom: 24px; }
+/* roles -> orgs table (Variant C) */
+.kvs-hero-roles { display: flex; flex-direction: column; max-width: 640px; margin-bottom: 24px; border-top: 1px solid var(--rule); }
+.kvs-hero-roles .role-line {
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: baseline;
+  padding: 12px 0; border-bottom: 1px solid var(--rule);
+}
+.kvs-hero-roles .role { font-family: var(--serif); font-size: 17px; line-height: 1.35; color: var(--ink); font-weight: 500; }
+.kvs-hero-roles .at {
+  font-family: var(--sans-caps); font-size: 13px; letter-spacing: 0.05em;
+  color: var(--ink); border-bottom: 0; text-align: right; white-space: nowrap;
+}
+.kvs-hero-roles a.at:hover { color: var(--accent); }
+.kvs-hero .tagline { font-size: 18px; line-height: 1.5; font-style: italic; color: var(--ink-soft); max-width: 600px; margin-bottom: 18px; }
 .kvs-hero .biolink { font-family: var(--sans); font-size: 14px; color: var(--ink-soft); border-bottom: 0; }
 .kvs-hero-photo {
   width: 100%;
@@ -326,6 +338,8 @@ html, body {
 .kvs-hero-note a:hover { color: var(--accent); }
 
 .kvs-recent { display: grid; grid-template-columns: 1.3fr 1fr; gap: 64px; }
+/* 3-column variant when the Notes column is present */
+.kvs-recent.cols-3 { grid-template-columns: 1.05fr 1.1fr 1.1fr; gap: 48px; }
 .kvs .recent-col { display: flex; flex-direction: column; }
 .kvs .recent-list { display: flex; flex-direction: column; }
 .kvs .recent-list > article { border-bottom: 1px solid var(--rule); }
@@ -599,7 +613,7 @@ html, body {
   .kvs-hero { grid-template-columns: 1fr; gap: 32px; }
   .kvs-hero-photo { max-width: 240px; order: -1; }
   .kvs-hero .name { font-size: 44px; }
-  .kvs-recent { grid-template-columns: 1fr; gap: 36px; }
+  .kvs-recent, .kvs-recent.cols-3 { grid-template-columns: 1fr; gap: 36px; }
   .kvs-about { grid-template-columns: 1fr; gap: 40px; }
   .kvs-about aside { max-width: 320px; }
   .kvs-pubgrid { grid-template-columns: 1fr; gap: 24px; }
