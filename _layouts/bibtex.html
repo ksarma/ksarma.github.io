@@ -86,6 +86,7 @@ reference into the page, so the entry is available as `page.entry`. {%- endcomme
   </main>
 
   <aside>
+    {%- if e.doi or e.website or e.pdf or e.arxiv -%}
     <div class="eyebrow" style="margin-bottom: 14px;">Read</div>
     <ul class="kvs-sidelinks">
       {%- if e.doi -%}<li><a class="label" href="https://doi.org/{{ e.doi }}" target="_blank" rel="noopener">doi</a><span class="desc">{{ e.journal | default: "publisher" }}</span></li>{%- endif -%}
@@ -93,6 +94,7 @@ reference into the page, so the entry is available as `page.entry`. {%- endcomme
       {%- if e.pdf -%}<li><a class="label" href="{% if e.pdf contains '://' %}{{ e.pdf }}{% else %}{{ e.pdf | prepend: '/assets/pdf/' | relative_url }}{% endif %}" target="_blank" rel="noopener">pdf</a><span class="desc">full text</span></li>{%- endif -%}
       {%- if e.arxiv -%}<li><a class="label" href="https://arxiv.org/abs/{{ e.arxiv }}" target="_blank" rel="noopener">arxiv</a><span class="desc">preprint</span></li>{%- endif -%}
     </ul>
+    {%- endif -%}
 
     <div class="eyebrow" style="margin-top: 32px; margin-bottom: 14px;">Cite</div>
     <p class="kvs-cite">
