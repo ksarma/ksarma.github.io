@@ -36,38 +36,55 @@ layout: kvs
   <div>
     <h1 class="name">{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}</h1>
     <div class="credentials-line">{{ site.credentials | downcase | replace: ' ', ' · ' }}</div>
-    <p class="tagline">{{ page.tagline | default: site.description }}</p>
-    <a class="biolink" href="{{ '/about/' | relative_url }}">full bio &rarr;</a>
 
-    {%- if site.enable_notes -%}
-    <div class="kvs-hero-notes">
-      <header class="head">
-        <div class="eyebrow">Recent notes</div>
-        <a class="see-all" href="{{ '/notes/' | relative_url }}">all notes &rarr;</a>
-      </header>
-      {%- for n in recent_notes limit: 3 -%}
-      <article class="kvs-hero-note">
-        <div class="mono date">{{ n.date | date: '%d %b %Y' }}</div>
-        <a href="{{ n.url | relative_url }}">{{ n.title }}</a>
-      </article>
+    {%- comment -%} roles -> orgs: anchors the name to reputable affiliations above the fold {%- endcomment -%}
+    <div class="kvs-hero-roles">
+      {%- for r in site.data.hero_roles -%}
+      <div class="role-line">
+        <div class="role">{{ r.role }}</div>
+        {%- if r.url -%}<a class="at" href="{{ r.url }}" target="_blank" rel="noopener">{{ r.org }}</a>{%- else -%}<span class="at">{{ r.org }}</span>{%- endif -%}
+      </div>
       {%- endfor -%}
     </div>
-    {%- endif -%}
+
+    <p class="tagline">{{ page.tagline | default: site.description }}</p>
+    <a class="biolink" href="{{ '/about/' | relative_url }}">full bio &rarr;</a>
   </div>
 
   <div class="kvs-hero-photo" role="img" aria-label="{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}" style="background-image: url('{{ '/assets/img/prof_pic.jpg' | relative_url }}');"></div>
 </section>
 
-<hr style="margin: 8px 0 48px;">
+<hr style="margin: 40px 0 48px;">
 
-{%- comment -%} ============ Press + Recordings rails ============ {%- endcomment -%}
-<section class="kvs-recent">
+{%- comment -%} ============ Recent strip: Notes (if enabled) + Press + Recordings ============ {%- endcomment -%}
+<section class="kvs-recent{% if site.enable_notes %} cols-3{% endif %}">
+
+  {%- if site.enable_notes -%}
+  <div class="recent-col">
+    <header class="section-header">
+      <div class="titles"><div class="eyebrow">Recent</div><h2>Notes</h2></div>
+      <a class="see-all" href="{{ '/notes/' | relative_url }}">all notes &rarr;</a>
+    </header>
+    <div class="recent-list">
+      {%- for n in recent_notes limit: 5 -%}
+      <article class="kvs-row-media">
+        <div class="mono date">{{ n.date | date: '%d %b %Y' }}</div>
+        <div>
+          <a class="title" href="{{ n.url | relative_url }}">{{ n.title }}</a>
+          <div class="sub">{{ n.dek | default: n.description | default: n.lead }}</div>
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- endif -%}
+
   <div class="recent-col">
     <header class="section-header">
       <div class="titles"><div class="eyebrow">Recent</div><h2>Press</h2></div>
     </header>
     <div class="recent-list">
-      {%- for item in site.data.news limit: 7 -%}
+      {%- for item in site.data.news limit: 5 -%}
       <article class="kvs-row-media">
         <div class="mono date">{{ item.date | date: '%d %b %Y' }}</div>
         <div>
@@ -84,7 +101,7 @@ layout: kvs
       <div class="titles"><div class="eyebrow">Recent</div><h2>Recordings</h2></div>
     </header>
     <div class="recent-list">
-      {%- for talk in site.data.talks limit: 6 -%}
+      {%- for talk in site.data.talks limit: 5 -%}
       <article class="kvs-row-media">
         <div class="kind">
           {%- if talk.kind == 'audio' -%}
