@@ -19,13 +19,13 @@ years: [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 
 
 <div class="kvs-legend">
   <span class="eyebrow">Legend</span>
-  <span class="item"><span class="badge-abbr is-paper">Paper</span> peer-reviewed journal article</span>
+  <span class="item"><span class="badge-abbr is-paper">Paper</span> journal paper</span>
   <span class="item"><span class="badge-abbr is-pre">Pre</span> preprint</span>
   <span class="item"><span class="badge-abbr is-conf">Conf</span> conference paper</span>
-  <span class="item"><span class="badge-abbr">Abs</span> abstract / poster</span>
+  <span class="item"><span class="badge-abbr">Abs</span> abstract</span>
   <span class="item"><span class="badge-abbr">Inv</span> invited talk</span>
   <span class="item"><span class="badge-abbr">Panel</span> panel</span>
-  <span class="item"><span class="badge-abbr">Letter</span> letter / commentary</span>
+  <span class="item"><span class="badge-abbr">Letter</span> letter</span>
 </div>
 
 <div class="kvs-pubgrid">

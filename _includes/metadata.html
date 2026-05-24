@@ -25,7 +25,20 @@
     {%- endif -%}
     </title>
     <meta name="author" content="{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}" />
-    <meta name="description" content="{%- if page.meta_description -%}{{ page.meta_description }}{%- elsif page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />
+    {%- comment -%} Resolve a single meta description, with a per-paper variant for bibliography detail pages (page.entry is set by jekyll-scholar). {%- endcomment -%}
+    {%- capture kvs_meta_description -%}
+    {%- if page.meta_description -%}{{ page.meta_description }}
+    {%- elsif page.entry -%}
+        {%- if page.entry.abstract -%}{{ page.entry.abstract | replace: '||', ' ' | strip_html | replace: '  ', ' ' | truncate: 200 }}
+        {%- else -%}
+            {%- if page.entry.journal -%}{%- assign kvs_venue = page.entry.journal -%}{%- elsif page.entry.booktitle -%}{%- assign kvs_venue = page.entry.booktitle -%}{%- else -%}{%- assign kvs_venue = '' -%}{%- endif -%}
+            {{ page.entry.title }}.{% if kvs_venue != '' %} {{ kvs_venue }}{% endif %}{% if page.entry.year %}, {{ page.entry.year }}{% endif %}.
+        {%- endif -%}
+    {%- elsif page.description -%}{{ page.description }}
+    {%- else -%}{{ site.description }}{%- endif -%}
+    {%- endcapture -%}
+    {%- assign kvs_meta_description = kvs_meta_description | strip -%}
+    <meta name="description" content="{{ kvs_meta_description | xml_escape }}" />
 {%- if page.keywords or site.keywords %}
     <meta name="keywords" content="{%- if page.keywords -%}{{ page.keywords }}{%- else -%}{{ site.keywords }}{%- endif -%}" />
 {%- endif %}
@@ -37,7 +50,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{%- if page.title -%}{{ title }} | {{ page.title }}{%- else -%}{{ title }}{%- endif -%}" />
     <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url | remove_first: 'index.html' }}" />
-    <meta property="og:description" content="{%- if page.meta_description -%}{{ page.meta_description }}{%- elsif page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />
+    <meta property="og:description" content="{{ kvs_meta_description | xml_escape }}" />
     {% if page.og_image or site.og_image -%}
     <meta property="og:image" content="{%- if page.og_image -%}{{ page.og_image }}{%- else -%}{{ site.og_image }}{%- endif -%}" />
     {%- endif %}
@@ -46,7 +59,7 @@
     <!-- Twitter card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{%- if page.title -%}{{ page.title }}{%- else -%}{{ title }}{%- endif -%}" />
-    <meta name="twitter:description" content="{%- if page.meta_description -%}{{ page.meta_description }}{%- elsif page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />
+    <meta name="twitter:description" content="{{ kvs_meta_description | xml_escape }}" />
     {% if page.og_image or site.og_image -%}
     <meta name="twitter:image" content="{%- if page.og_image -%}{{ page.og_image }}{%- else -%}{{ site.og_image }}{%- endif -%}" />
     {%- endif %}
@@ -142,7 +155,7 @@
         },
         "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
         "@type": "WebSite",
-        "description": "{%- if page.meta_description -%}{{ page.meta_description }}{%- elsif page.description -%}{{ page.description }}{%- else if site.description -%}{{ site.description }}{%- endif -%}",
+        "description": {{ kvs_meta_description | jsonify }},
         "headline": "{%- if page.title -%}{{ page.title }}{%- else -%}{{ site.title }}{%- endif -%}",
         {% if sameaslinks != blank -%}
         "sameAs": {{ sameaslinks }}, 
