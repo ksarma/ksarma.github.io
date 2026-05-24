@@ -273,7 +273,6 @@ imagemagick:
 # -----------------------------------------------------------------------------
 
 enable_notes:               false # surfaces the Notes section (nav, homepage band, RSS link). Turn on once notes are written.
-                                   # band, RSS link). Turn on once notes are written.
 enable_google_analytics:    true  # enables google analytics
 enable_panelbear_analytics: false  # enables panelbear analytics
 enable_google_verification: false  # enables google site verification
