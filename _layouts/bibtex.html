@@ -62,15 +62,15 @@ reference into the page, so the entry is available as `page.entry`. {%- endcomme
 <div class="kvs-paper-body">
   <main>
     {%- if e.abstract -%}
-    <section>
+    <section class="kvs-abstract">
       <div class="eyebrow" style="margin-bottom: 14px;">Abstract</div>
-      <p>{{ e.abstract }}</p>
+      {{ e.abstract | formatAbstract }}
     </section>
     {%- endif -%}
 
     {%- if e.award -%}
     <section>
-      <div class="kvs-bibentry"><div class="award">&#9733; {{ e.award }}</div></div>
+      <div class="kvs-award">&#9733; {{ e.award }}</div>
     </section>
     {%- endif -%}
 

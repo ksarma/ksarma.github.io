@@ -52,13 +52,10 @@
 
     <div class="links">
       {%- if entry.bibtex -%}<a class="bibtex btn-mini" role="button">cite</a>{%- endif -%}
-      {%- if entry.abstract -%}<a class="abstract btn-mini" role="button">abs</a>{%- endif -%}
+      {%- if entry.abstract -%}<a class="btn-mini" href="{{ detail_url }}">abs</a>{%- endif -%}
       {%- if ext_url -%}<a class="btn-mini" href="{{ ext_url }}" target="_blank" rel="noopener">{{ ext_label }}</a>{%- endif -%}
     </div>
 
-    {%- if entry.abstract -%}
-    <div class="abstract hidden"><p>{{ entry.abstract }}</p></div>
-    {%- endif -%}
     {%- if entry.bibtex -%}
     <div class="bibtex hidden">{% highlight bibtex %}{{ entry.bibtex | hideCustomBibtex }}{% endhighlight %}</div>
     {%- endif -%}
