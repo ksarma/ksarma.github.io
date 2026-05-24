@@ -19,7 +19,7 @@
         {%- capture title -%}{{ site.title }}{%- endcapture -%}
     {%- endif -%}
     {% if page.title != "blank" and page.title != "home" and page.url != "/" -%}
-        {{ page.title }} &mdash; {{ title }}
+        {{ page.title }} | {{ title }}
     {%- else -%}
         {{ title }}{% if site.credentials %} {{ site.credentials }}{% endif %}
     {%- endif -%}

@@ -24,6 +24,7 @@ years: [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 
   <span class="item"><span class="badge-abbr is-conf">Conf</span> conference paper</span>
   <span class="item"><span class="badge-abbr">Abs</span> abstract / poster</span>
   <span class="item"><span class="badge-abbr">Inv</span> invited talk</span>
+  <span class="item"><span class="badge-abbr">Panel</span> invited panel</span>
 </div>
 
 <div class="kvs-pubgrid">
