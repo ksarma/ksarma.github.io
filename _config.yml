@@ -50,7 +50,7 @@ max_width: 1200px
 # Display links to the page with a preview object on social media.
 serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: true # Include Schema.org in the HTML head
-og_image: https://ksarma.com/assets/img/prof_pic.jpg # The site-wide (default for all links) Open Graph preview image
+og_image: https://ksarma.com/assets/img/og-card.jpg # Site-wide social preview card (1200x630)
 
 # -----------------------------------------------------------------------------
 # Social integration
