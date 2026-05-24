@@ -1,0 +1,60 @@
+---
+layout: kvs
+---
+{%- assign words = content | number_of_words -%}
+{%- if page.read_min -%}{%- assign rt = page.read_min -%}{%- else -%}{%- assign rt = words | plus: 199 | divided_by: 200 -%}{%- endif -%}
+
+{%- comment -%} BlogPosting structured data {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date: '%Y-%m-%d' }}",
+  "description": {{ page.description | default: page.lead | jsonify }},
+  "url": "{{ page.url | absolute_url }}",
+  "mainEntityOfPage": "{{ page.url | absolute_url }}",
+  "author": { "@id": "{{ '/about/' | absolute_url }}#person", "@type": "Person", "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}" },
+  "publisher": { "@type": "Person", "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}" }
+}
+</script>
+
+<div class="kvs-breadcrumb">
+  <a href="{{ '/notes/' | relative_url }}">notes</a>
+  <span class="sep">/</span>
+  <span class="mono">{{ page.date | date: '%Y' }}</span>
+</div>
+
+<header class="kvs-article-head">
+  <h1>{{ page.title }}</h1>
+  <div class="kvs-article-meta">
+    <time class="mono" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-d %B %Y' }}</time>
+    <span class="sep">&middot;</span>
+    <span>{{ rt }} min read</span>
+    {%- if page.tags and page.tags.size > 0 -%}
+    <span class="sep">&middot;</span>
+    <span class="tags">
+      {%- for t in page.tags -%}<a class="tag" href="{{ '/notes/' | relative_url }}#tag-{{ t | slugify }}">{{ t }}</a>{%- endfor -%}
+    </span>
+    {%- endif -%}
+  </div>
+</header>
+
+<article class="kvs-article-body">
+  {%- if page.lead -%}<p class="lead">{{ page.lead }}</p>{%- endif -%}
+  {{ content }}
+</article>
+
+<section class="kvs-byline">
+  <div class="avatar" role="img" aria-label="{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}" style="background-image: url('{{ '/assets/img/prof_pic_square.jpg' | relative_url }}');"></div>
+  <div>
+    <div class="name">{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }} <span class="credentials">{{ site.credentials }}</span></div>
+    <p>
+      I&rsquo;m a physician and computational health scientist at UCSF, where I founded the AI in Mental Health Research Group. I write occasional notes on AI, mental health, and clinical care.
+      <a href="{{ '/about/' | relative_url }}">about &rarr;</a>
+      <span style="color: var(--ink-faint);">&middot;</span>
+      <a href="{{ '/feed.xml' | relative_url }}">RSS &rarr;</a>
+    </p>
+  </div>
+</section>

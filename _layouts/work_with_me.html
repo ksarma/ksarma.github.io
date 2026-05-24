@@ -1,0 +1,63 @@
+---
+layout: kvs
+---
+<div class="kvs-pagelabel"><div class="eyebrow">Work with me</div></div>
+
+<div class="kvs-wwm">
+  <aside class="toc">
+    <div class="eyebrow" style="margin-bottom: 16px;">On this page</div>
+    <ul>
+      {%- for s in site.data.work_with_me -%}
+      <li><a href="#{{ s.id }}">{{ s.num }}. {{ s.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+    <div class="contact">
+      <div class="eyebrow" style="margin-bottom: 10px;">Contact</div>
+      <p class="meta" style="margin: 0; line-height: 1.9;">
+        {%- if site.email_ucsf_display -%}<span class="mono">{{ site.email_ucsf_display }}</span><br>{%- endif -%}
+        <span class="mono">{{ site.email_display }}</span>
+      </p>
+    </div>
+  </aside>
+
+  <main>
+    {%- for s in site.data.work_with_me -%}
+    <section class="kvs-wwm-section" id="{{ s.id }}">
+      <header>
+        <div class="num">{{ s.num }}.</div>
+        <h2>{{ s.title }}</h2>
+      </header>
+      <div class="body">
+        {{ s.body | markdownify }}
+        {%- if s.caveat -%}<p class="caveat">{{ s.caveat }}</p>{%- endif -%}
+      </div>
+    </section>
+    {%- endfor -%}
+  </main>
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.kvs-wwm .toc a[href^="#"]'));
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.kvs-wwm-section'));
+    if (!links.length || !sections.length) return;
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+
+    function onScroll() {
+      var pos = window.scrollY + 140;
+      var current = sections[0];
+      sections.forEach(function (s) { if (s.offsetTop <= pos) current = s; });
+      // at (or near) the bottom of the page the last section's top may never
+      // cross the threshold — force it active so the final item highlights
+      var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom) current = sections[sections.length - 1];
+      links.forEach(function (a) { a.classList.remove('active'); });
+      if (current && map[current.id]) map[current.id].classList.add('active');
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>

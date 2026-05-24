@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+
+  <head>
+  {%- if page.redirect -%}
+    <meta http-equiv="refresh" content="3; url={{ site.baseurl | prepend: site.url }}/" />
+  {%- endif -%}
+  {% include head.html %}
+  {{ page.extra_head }}
+  </head>
+
+  <body>
+    <div class="kvs">
+      <div class="kvs-container">
+        {%- include kvs_nav.html %}
+        {{ content }}
+        {%- include kvs_footer.html %}
+      </div>
+    </div>
+
+    {% include scripts/jquery.html %}
+    {% include scripts/mathjax.html %}
+    {% include scripts/misc.html %}
+    {% include scripts/analytics.html %}
+  </body>
+</html>
