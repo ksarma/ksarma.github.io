@@ -478,6 +478,10 @@ html, body {
   font-family: var(--sans); font-size: 12px; color: var(--ink); margin-top: 8px;
   display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; background: var(--bg-tint); border-radius: 2px;
 }
+.kvs-award {
+  font-family: var(--sans); font-size: 13px; color: var(--ink);
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: var(--bg-tint); border-radius: 3px;
+}
 .kvs-bibentry .links { display: flex; gap: 4px; align-self: start; margin-top: 4px; flex-wrap: wrap; }
 .kvs-bibentry .hidden { display: none; }
 .kvs-bibentry .abstract.open, .kvs-bibentry .bibtex.open { display: block; margin-top: 12px; }
@@ -588,6 +592,9 @@ html, body {
 .kvs-paper-body { display: grid; grid-template-columns: 1fr 280px; gap: 64px; padding-top: 48px; align-items: start; }
 .kvs-paper-body main { max-width: 680px; }
 .kvs-paper-body section + section { margin-top: 56px; }
+.kvs-abstract p { margin: 0 0 14px; }
+.kvs-abstract p:last-child { margin-bottom: 0; }
+.kvs-abstract p strong { color: var(--ink); font-weight: 600; }
 .kvs-sidelinks { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--rule); }
 .kvs-sidelinks li { padding: 10px 0; border-bottom: 1px solid var(--rule); display: flex; align-items: baseline; gap: 10px; }
 .kvs-sidelinks .label {
