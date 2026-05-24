@@ -4,7 +4,7 @@ permalink: /publications/
 title: Publications
 description: "* indicates equal contribution"
 meta_description: "Peer-reviewed papers, preprints, abstracts, and conference proceedings by Karthik V. Sarma on AI, clinical informatics, psychiatry, and VR medical simulation."
-years: [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013]
+years: [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012]
 ---
 
 <header class="kvs-pub-head">
@@ -25,6 +25,7 @@ years: [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 
   <span class="item"><span class="badge-abbr">Abs</span> abstract / poster</span>
   <span class="item"><span class="badge-abbr">Inv</span> invited talk</span>
   <span class="item"><span class="badge-abbr">Panel</span> panel</span>
+  <span class="item"><span class="badge-abbr">Letter</span> letter / commentary</span>
 </div>
 
 <div class="kvs-pubgrid">
