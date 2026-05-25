@@ -199,7 +199,7 @@ html, body {
 /* inline-SVG toggle icons (replaced FontAwesome). Visibility (display:block/none)
    is still driven by the .fa-sun/.fa-moon rules in _themes.scss per data-theme;
    this only sizes them and overrides FA's icon padding. */
-.kvs-theme-toggle svg { width: 19px; height: 19px; padding: 0; vertical-align: middle; }
+.kvs-theme-toggle svg { width: 22px; height: 22px; padding: 0; vertical-align: middle; }
 
 /* =========================================================
    footer
