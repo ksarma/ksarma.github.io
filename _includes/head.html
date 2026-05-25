@@ -3,28 +3,23 @@
 
     <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     {% if site.enable_google_analytics -%}
     <link rel="preconnect" href="https://www.googletagmanager.com">
     {%- endif %}
+    {%- if page.url == '/' %}
+    <!-- Preload the LCP hero image (homepage) -->
+    <link rel="preload" as="image" href="{{ '/assets/img/prof_pic.jpg' | relative_url }}" fetchpriority="high">
+    {%- endif %}
 
-    <!-- Bootstrap & MDB -->
-    <!-- Bootstrap: Critical for layout, load synchronously -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@{{ site.bootstrap.version }}/dist/css/bootstrap.min.css" rel="stylesheet" integrity="{{ site.bootstrap.integrity.css }}" crossorigin="anonymous">
-    <!-- MDB: Non-critical, defer loading -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@{{ site.mdb.version }}/css/mdb.min.css" integrity="{{ site.mdb.integrity.css }}" crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@{{ site.mdb.version }}/css/mdb.min.css" integrity="{{ site.mdb.integrity.css }}" crossorigin="anonymous"></noscript>
-
-    <!-- Fonts & Icons -->
-    <!-- FontAwesome: Non-critical icons, defer loading -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{{ site.fontawesome.version }}/css/all.min.css" integrity="{{ site.fontawesome.integrity }}" crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{{ site.fontawesome.version }}/css/all.min.css" integrity="{{ site.fontawesome.integrity }}" crossorigin="anonymous"></noscript>
-    <!-- Academicons: Non-critical icons, defer loading -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@{{ site.academicons.version }}/css/academicons.min.css" integrity="{{ site.academicons.integrity }}" crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@{{ site.academicons.version }}/css/academicons.min.css" integrity="{{ site.academicons.integrity }}" crossorigin="anonymous"></noscript>
-    <!-- Google Fonts: Using font-display=swap for performance -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&display=swap">
+    {%- comment -%}
+      The editorial (.kvs) redesign uses self-hosted fonts (_fonts.scss) and its
+      own CSS — it does NOT use Bootstrap, MDBootstrap, FontAwesome, Academicons,
+      or Google Fonts (Roboto). These render-blocking CDN stylesheets were removed
+      to fix the PageSpeed "render-blocking requests" finding. The theme toggle now
+      uses inline SVG instead of FontAwesome glyphs. If a legacy al-folio layout
+      (page/default/post/distill — all currently unpublished) is ever revived, its
+      stylesheets will need to be restored here.
+    {%- endcomment -%}
 
     <!-- Code Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/{{ site.highlight_theme_light | append: '.css' }}" media="none" id="highlight_theme_light" />
