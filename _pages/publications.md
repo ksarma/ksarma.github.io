@@ -8,8 +8,7 @@ years: [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 
 ---
 
 <header class="kvs-pub-head">
-  <div class="eyebrow" style="margin-bottom: 16px;">Publications</div>
-  <h1 class="display">Selected work.</h1>
+  <h1 class="display">Publications</h1>
   <p>
     Peer-reviewed papers, preprints, abstracts, and conference proceedings.
     <span style="font-style: italic;">An asterisk indicates equal contribution.</span>

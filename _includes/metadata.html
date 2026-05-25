@@ -29,11 +29,14 @@
     {%- capture kvs_meta_description -%}
     {%- if page.meta_description -%}{{ page.meta_description }}
     {%- elsif page.entry -%}
-        {%- if page.entry.abstract -%}{{ page.entry.abstract | replace: '||', ' ' | strip_html | replace: '  ', ' ' | truncate: 200 }}
+        {%- capture kvs_entry_desc -%}
+        {%- if page.entry.abstract -%}{{ page.entry.abstract | replace: '||', ' ' | strip_html | replace: '  ', ' ' }}
         {%- else -%}
             {%- if page.entry.journal -%}{%- assign kvs_venue = page.entry.journal -%}{%- elsif page.entry.booktitle -%}{%- assign kvs_venue = page.entry.booktitle -%}{%- else -%}{%- assign kvs_venue = '' -%}{%- endif -%}
             {{ page.entry.title }}.{% if kvs_venue != '' %} {{ kvs_venue }}{% endif %}{% if page.entry.year %}, {{ page.entry.year }}{% endif %}.
         {%- endif -%}
+        {%- endcapture -%}
+        {{ kvs_entry_desc | strip | truncate: 150 }}
     {%- elsif page.description -%}{{ page.description }}
     {%- else -%}{{ site.description }}{%- endif -%}
     {%- endcapture -%}

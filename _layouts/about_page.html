@@ -1,33 +1,35 @@
 ---
 layout: kvs
 ---
-<div class="kvs-pagelabel"><div class="eyebrow">About</div></div>
+<div class="kvs-pagelabel"><h1 class="eyebrow">About</h1></div>
 
 <div class="kvs-about">
+  <header class="kvs-about-header">
+    <div class="rail-photo" role="img" aria-label="{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}" style="background-image: url('{{ '/assets/img/prof_pic.jpg' | relative_url }}');"></div>
+
+    <div class="kvs-about-meta">
+      <div class="eyebrow">Current</div>
+      <ul class="kvs-roles">
+        {%- for r in site.data.roles -%}
+        <li>
+          <div class="org">{{ r.org }}</div>
+          <div>{%- for line in r.roles -%}<div class="role">{{ line }}</div>{%- endfor -%}</div>
+        </li>
+        {%- endfor -%}
+      </ul>
+
+      <div class="eyebrow">Elsewhere</div>
+      <ul class="kvs-elsewhere">
+        {%- if site.scholar_userid -%}<li><a href="https://scholar.google.com/citations?user={{ site.scholar_userid }}" target="_blank" rel="noopener">scholar.google</a></li>{%- endif -%}
+        {%- if site.orcid_id -%}<li><a href="https://orcid.org/{{ site.orcid_id }}" target="_blank" rel="noopener">orcid &middot; {{ site.orcid_id }}</a></li>{%- endif -%}
+        {%- if site.github_username -%}<li><a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">github</a></li>{%- endif -%}
+        {%- if site.bluesky_username -%}<li><a href="https://bsky.app/profile/{{ site.bluesky_username }}" target="_blank" rel="noopener">bsky &middot; @{{ site.bluesky_username }}</a></li>{%- endif -%}
+        {%- if site.linkedin_username -%}<li><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener">linkedin</a></li>{%- endif -%}
+      </ul>
+    </div>
+  </header>
+
   <main>
     {{ content }}
   </main>
-
-  <aside>
-    <div class="rail-photo" role="img" aria-label="{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}" style="background-image: url('{{ '/assets/img/prof_pic.jpg' | relative_url }}');"></div>
-
-    <div class="eyebrow" style="margin-bottom: 14px;">Current</div>
-    <ul class="kvs-roles">
-      {%- for r in site.data.roles -%}
-      <li>
-        <div class="org">{{ r.org }}</div>
-        <div>{%- for line in r.roles -%}<div class="role">{{ line }}</div>{%- endfor -%}</div>
-      </li>
-      {%- endfor -%}
-    </ul>
-
-    <div class="eyebrow" style="margin-top: 36px; margin-bottom: 14px;">Elsewhere</div>
-    <ul class="kvs-elsewhere">
-      {%- if site.scholar_userid -%}<li><a href="https://scholar.google.com/citations?user={{ site.scholar_userid }}" target="_blank" rel="noopener">scholar.google</a></li>{%- endif -%}
-      {%- if site.orcid_id -%}<li><a href="https://orcid.org/{{ site.orcid_id }}" target="_blank" rel="noopener">orcid &middot; {{ site.orcid_id }}</a></li>{%- endif -%}
-      {%- if site.github_username -%}<li><a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">github</a></li>{%- endif -%}
-      {%- if site.bluesky_username -%}<li><a href="https://bsky.app/profile/{{ site.bluesky_username }}" target="_blank" rel="noopener">bsky &middot; @{{ site.bluesky_username }}</a></li>{%- endif -%}
-      {%- if site.linkedin_username -%}<li><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener">linkedin</a></li>{%- endif -%}
-    </ul>
-  </aside>
 </div>
