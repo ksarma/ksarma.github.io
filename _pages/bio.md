@@ -2,7 +2,7 @@
 layout: about_page
 title: About
 permalink: /about/
-meta_description: "Karthik V. Sarma, MD PhD FAMIA, is a physician and computational health scientist at UCSF, founder of the AI in Mental Health Research Group, CTO at SimX, and APA Trustee-Elect."
+meta_description: "Karthik V. Sarma, MD PhD FAMIA, is a physician and computational health scientist at UCSF, founder of the AI in Mental Health Research Group, and CTO at SimX."
 ---
 
 I am a physician and computational health scientist at the [University of California, San Francisco](https://psych.ucsf.edu/), where I am affiliated with the Psychiatry RRTP and the Clinical Informatics Fellowship. I work with the Department of Psychiatry and Behavioral Sciences, the [Bakar Computational Health Sciences Institute](https://bakarinstitute.ucsf.edu/), and the [Division of Clinical Informatics and Digital Transformation](https://docit.ucsf.edu/). I founded the UCSF AI in Mental Health Research Group ([AIMHealth](https://aimhealth.ucsf.edu/)), and I'm co-founder and Chief Technology Officer at [SimX](https://simxvr.com). I am a [Fellow](https://amia.org/communities/famia) of the American Medical Informatics Association.

@@ -5,7 +5,7 @@ tags: [policy, safety]
 read_min: 9
 lead: "A note on the gap between 'the model achieves SOTA on this benchmark' and 'this model is safe to deploy in front of a patient.'"
 description: "A note on the gap between 'the model achieves SOTA on this benchmark' and 'this model is safe to deploy in front of a patient.' Three things I keep asking companies for that aren't standard yet."
-meta_description: "Three things I keep asking digital-health companies for during model validation that aren't standard practice yet, and why benchmarks don't establish clinical safety."
+meta_description: "Three questions I ask digital-health companies during model validation that aren't standard practice yet, and why benchmarks don't establish clinical safety."
 ---
 
 Benchmark performance and deployment safety are different claims, and the distance between them is where most of the risk lives. Here are three things I keep asking for that aren't yet standard.
