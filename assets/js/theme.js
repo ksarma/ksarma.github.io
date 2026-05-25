@@ -9,8 +9,11 @@ let toggleTheme = (theme) => {
 }
 
 
-let setTheme = (theme) =>  {
-  transTheme();
+let setTheme = (theme, animate = true) =>  {
+  // Only run the 750ms cross-fade for an explicit user toggle. On initial page
+  // load the transition would animate every element as the page settles (and
+  // as webfonts swap in), producing a visible "flash" — so init passes false.
+  if (animate) transTheme();
   setHighlight(theme);
 
   if (theme) {
@@ -56,7 +59,7 @@ let initTheme = (theme) => {
     theme = 'dark';
   }
 
-  setTheme(theme);
+  setTheme(theme, false);
 }
 
 

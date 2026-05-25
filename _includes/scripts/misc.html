@@ -10,5 +10,5 @@
   <script src="{{ '/assets/js/zoom.js' | relative_url }}"></script>
 {%- endif -%}
 
-  <!-- Load Common JS -->
-  <script src="{{ '/assets/js/common.js' | relative_url }}"></script>
+  <!-- Load Common JS (defer: depends on jQuery, runs after parse; not needed for first paint) -->
+  <script defer src="{{ '/assets/js/common.js' | relative_url }}"></script>

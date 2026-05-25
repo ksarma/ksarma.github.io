@@ -11,6 +11,14 @@
     <link rel="preload" as="image" href="{{ '/assets/img/prof_pic-800.webp' | relative_url }}" fetchpriority="high" type="image/webp">
     {%- endif %}
 
+    {%- comment -%} Preload the core above-the-fold fonts so text paints directly in
+      Equity/Concourse instead of flashing the system fallback then swapping (FOUT).
+      Only the most-used faces — secondary faces still load via @font-face. {%- endcomment -%}
+    {%- assign kvs_preload_fonts = "equity_text_a_regular,equity_text_a_bold,equity_text_a_italic,concourse_t3_regular,concourse_c3_regular,triplicate_t4_regular" | split: "," -%}
+    {%- for f in kvs_preload_fonts -%}
+    <link rel="preload" as="font" type="font/woff2" href="{{ '/assets/fonts/' | append: f | append: '.woff2' | relative_url }}" crossorigin>
+    {%- endfor %}
+
     {%- comment -%}
       The editorial (.kvs) redesign uses self-hosted fonts (_fonts.scss) and its
       own CSS — it does NOT use Bootstrap, MDBootstrap, FontAwesome, Academicons,
