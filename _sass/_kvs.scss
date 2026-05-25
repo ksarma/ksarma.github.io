@@ -110,7 +110,9 @@ html, body {
 .kvs a {
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px solid var(--accent-tint);
+  /* underline strong enough that links don't rely on color alone (a11y:
+     "links rely on color to be distinguishable"). Was --accent-tint (~10%). */
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
   transition: border-color .15s, color .15s;
 }
 .kvs a:hover { color: var(--accent-hover); border-bottom-color: var(--accent); }
@@ -194,6 +196,10 @@ html, body {
   cursor: pointer;
 }
 .kvs-theme-toggle:hover { color: var(--accent); }
+/* inline-SVG toggle icons (replaced FontAwesome). Visibility (display:block/none)
+   is still driven by the .fa-sun/.fa-moon rules in _themes.scss per data-theme;
+   this only sizes them and overrides FA's icon padding. */
+.kvs-theme-toggle svg { width: 29px; height: 29px; padding: 0; vertical-align: middle; }
 
 /* =========================================================
    footer
