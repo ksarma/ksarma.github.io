@@ -3,6 +3,12 @@
 # Fields: title, event, date, url, description (optional)
 
 # 'kind' controls the metadata glyph: video (play triangle) or audio (waveform)
+- title: "The AI Therapist: When People Turn to Chatbots for Mental Health"
+  event: "Wall Street Journal"
+  date: "August 2026"
+  kind: audio
+  url: https://www.wsj.com/podcasts/whats-news/the-ai-therapist-when-people-turn-to-chatbots-for-mental-health/3F3F7E6A-593F-4173-A6F4-3B9BFEE94D71
+
 - title: "SB 903 Testimony"
   event: "CA Senate Business, Professions, and Economic Development Committee"
   date: "April 2026"
